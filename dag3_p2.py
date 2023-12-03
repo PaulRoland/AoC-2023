@@ -9,7 +9,6 @@ import time
 start_time = time.time()
 f = open("input_dag3.txt", "r")
 
-schematic = np.zeros((140,140))
 symbol_map=np.zeros((140,140))
 adj_map=np.zeros((140,140))
 
@@ -27,8 +26,6 @@ for i,line in enumerate(f):
  
     for j,letter in enumerate(line):
         if letter.isdigit():
-            schematic[i,j]=int(letter)
-            
             #bijhouden dat we met een nummer bezig zijn
             number=number+letter
             number_running=1
@@ -64,5 +61,5 @@ for index,num in enumerate(number_list):
             for j in np.arange(j_min,j_max+1,1):
                 adj_map[i,j]=adj_map[i,j]+1 #Houd bij hoevaak we hier langs komen, dit gebruiken we als map. Dit moet 2 zijn. 
                 symbol_map[i,j]=symbol_map[i,j]*int(num) #Schrijf waarde van de adjacent gear in de map     
-print(np.sum(symbol_map * (adj_map==2)))
+print(int(np.sum(symbol_map * (adj_map==2))))
 print("--- %s seconds ---" % (time.time() - start_time))
