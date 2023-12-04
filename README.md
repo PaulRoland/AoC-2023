@@ -8,11 +8,12 @@ De code die je daar ziet, is de code die gebruikt is om de antwoorden te geven.
 In sommige gevallen zie je ook *_imp.py, dan heb ik nog even doorgesleuteld omdat ik niet heel content was met de oplossing. Dit zou wat efficientere of duidelijkere code moeten zijn.
 
 ## Runtimes
-Hier gaat het natuurlijk om, alle runtimes. Ik heb een paar keer op f5 gedrukt en de laagste waarde genomen:
+Hier gaat het natuurlijk om, alle runtimes. Ik heb een paar keer op f5 gedrukt en de laagste waarde genomen.
+Kanttekening bij alle runtimes (ook original) is dat ik alle onnodige print statements er wel uit heb gehaald, deze kosten doorgaans veel tijd.
 
 | Dag | Runtime original [ms]| Runtime improved [ms] |
-|---|---|---|
-|Dag 1| |10.4923|
-|Dag 2| | 5.0007|
-|Dag 3| | 21.0032|
-|Dag 4| |2.0009 |
+|-----|---|---|
+|Dag 1|10.502|10.4923|
+|Dag 2| 7.5007| 5.0007|
+|Dag 3| 59.0002| 21.0032|
+|Dag 4|2.501|2.0009 |
