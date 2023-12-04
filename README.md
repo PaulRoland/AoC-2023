@@ -12,7 +12,7 @@ Hier gaat het natuurlijk om, alle runtimes. Ik heb een paar keer op f5 gedrukt e
 Kanttekening bij alle runtimes (ook original) is dat ik alle onnodige print statements er wel uit heb gehaald, deze kosten doorgaans veel tijd.
 
 | Dag | Runtime original [ms]| Runtime improved [ms] |
-|-----|---|---:|
+|-----|---:|---:|
 |Dag 1|10.5013|10.0005|
 |Dag 2| 7.5007| 5.0007|
 |Dag 3| 59.0002| 21.0032|
