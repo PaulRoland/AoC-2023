@@ -10,7 +10,7 @@ In sommige gevallen zie je ook *_imp.py, dan heb ik nog even doorgesleuteld omda
 ## Runtimes
 Hier gaat het natuurlijk om, alle runtimes. Ik heb een paar keer op f5 gedrukt en de laagste waarde genomen:
 
-| Dag | Run-time original [ms]| Run-time improved [ms] |
+| Dag | Runtime original [ms]| Runtime improved [ms] |
 |---|---|---|
 |Dag 1| |10.4923|
 |Dag 2| | 5.0007|
