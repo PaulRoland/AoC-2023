@@ -13,7 +13,7 @@ Kanttekening bij alle runtimes (ook original) is dat ik alle onnodige print stat
 
 | Dag | Runtime original [ms]| Runtime improved [ms] |
 |-----|---|---|
-|Dag 1|10.502|10.4923|
+|Dag 1|10.5013|10.4923|
 |Dag 2| 7.5007| 5.0007|
 |Dag 3| 59.0002| 21.0032|
 |Dag 4|2.501|2.0009 |
