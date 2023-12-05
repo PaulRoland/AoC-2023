@@ -7,8 +7,6 @@ Created on Tue Dec  5 05:59:17 2023
 import time
 start_time = time.time_ns()
 
-import re
-
 seed_soil = list()
 soil_fert = list()
 fert_water= list()
