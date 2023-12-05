@@ -17,3 +17,4 @@ Kanttekening bij alle runtimes (ook original) is dat ik alle onnodige print stat
 |Dag 2| 7.5007| 5.0007|
 |Dag 3| 59.0002| 21.0032|
 |Dag 4|2.501|2.0009 |
+|Dag 5|501120|git gud |
