@@ -93,6 +93,7 @@ for seed in seed_list:
 print("Part 1:",min(loc_list))
 
 #Locaties bruteforcen totdat er een zaad is wat in de lijst staat.
+#Locatie>zaden bruteforce leek me sneller dan alle zaden doorrekenen en dan de laagste locatie nemen.
 loc = 0
 loc_gev =0
 while loc_gev == 0:
@@ -106,6 +107,7 @@ while loc_gev == 0:
     
     #print(seed,soil,fert,water,light,temp,hum,loc)
     if(check_seed(seed,seed_list)):
+        #De eerste hit is ook meteen de laagste locatie, dus we zijn klaar
         print("Part 2:",loc)
         loc_gev=loc
     loc=loc+1
