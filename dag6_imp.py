@@ -25,16 +25,9 @@ def way_to_win(distance,time):
     #t1 = 0.5(time-(time**2-4*ditance)**0.5)
     #t2 = 0.5(time+(time**2-4*ditance)**0.5)
     wortel = (time*time-4*distance)**0.5 #Dit 1 keer uitrekenen
-    t1 =math.ceil(0.5*(time-wortel)) #afronden naar boven vanaf deze hele tijd win je
-    t2 =math.floor(0.5*(time+wortel)) #afronden naar beneden tot deze hele tijd win je
-
-    n=t2-t1+1
-    if t1*(time-t1) == distance: #Gelijk spelen is niet winnen
-        n=n-1
-    if t2*(time-t2) == distance: #Gelijk spelen is niet winnen
-        n=n-1
-            
-    return n
+    t1 =math.floor(0.5*(time-wortel)) #afronden naar beneden
+    t2 =math.ceil(0.5*(time+wortel)) #afronden naar boven       
+    return t2-t1-1 #integers excluding edges
 
 
 f = open("input_dag6.txt", "r")
