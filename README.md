@@ -7,6 +7,8 @@ De code die je daar ziet, is de code die gebruikt is om de antwoorden te geven.
 
 In sommige gevallen zie je ook *_imp.py, dan heb ik nog even doorgesleuteld omdat ik niet heel content was met de oplossing. Dit zou wat efficientere of duidelijkere code moeten zijn.
 
+Bij echt mooie dagen kun je ook nog een Dag[n].xslx vinden.
+
 ## Runtimes
 Hier gaat het natuurlijk om, alle runtimes. Ik heb een paar keer op f5 gedrukt en de laagste waarde genomen.
 
