@@ -8,7 +8,6 @@ import time
 start_time = time.time_ns()
 
 import math
-
 def get_number_list(lst):
     new_lst = [int(x) for x in lst]
     return new_lst
@@ -19,15 +18,11 @@ def get_number_list2(lst):
         total=total+item
     return int(total)
 
-def way_to_win(distance,time):
-    #Distance = timeheld*(time-timeheld) -> d = t*(T-t)
-    #t*t-t8T-D=0 Geeft met de vierkantsvergelijking
-    #t1 = 0.5(time-(time**2-4*ditance)**0.5)
-    #t2 = 0.5(time+(time**2-4*ditance)**0.5)
-    wortel = (time*time-4*distance)**0.5 #Dit 1 keer uitrekenen
-    t1 =math.floor(0.5*(time-wortel)) #afronden naar beneden
-    t2 =math.ceil(0.5*(time+wortel)) #afronden naar boven       
-    return t2-t1-1 #integers excluding edges
+def ways_to_win(distance,time): 
+    wrtl=math.sqrt(time*time-4*distance)
+    t1 = math.floor(0.5*(time-wrtl))
+    t2 = math.ceil(0.5*(time+wrtl))
+    return t2-t1-1
 
 
 f = open("input_dag6.txt", "r")
@@ -41,8 +36,10 @@ for i,line in enumerate(f):
 f.close()
 
 multiplicity=1
-for i,distance in enumerate(distance_list):    
-    multiplicity = multiplicity*way_to_win(distance,time_list[i])
+for distance,times in zip(distance_list,time_list):    
+    multiplicity = multiplicity*ways_to_win(distance,times)
+    
 print("Dag 6, Part 1:",multiplicity)
-print("Dag 6, Part 2:",way_to_win(distance_total,time_total))
-print("--- %s ms ---" % ((time.time_ns() - start_time)/1000000))
+print("Dag 6, Part 2:",ways_to_win(distance_total,time_total))
+
+print("--- %s ms ---" % ((time.time_ns()- start_time)/1000000))
