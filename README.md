@@ -9,7 +9,6 @@ In sommige gevallen zie je ook *_imp.py, dan heb ik nog even doorgesleuteld omda
 
 ## Runtimes
 Hier gaat het natuurlijk om, alle runtimes. Ik heb een paar keer op f5 gedrukt en de laagste waarde genomen.
-Kanttekening bij alle runtimes (ook original) is dat ik alle onnodige print statements er wel uit heb gehaald, deze kosten doorgaans veel tijd.
 
 | Dag | Runtime original [ms]| Runtime improved [ms] |
 |-----|---:|---:|
