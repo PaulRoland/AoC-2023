@@ -20,7 +20,8 @@ def get_rank_lists(hands):
     joker_effect=[[0,1,3,5,6,6],[1,3,5,6],[2,4],[3,5,6],[4],[5,6],[6]] 
     
     mapping_table_nojoker = str.maketrans({'A': 'Z', 'K': 'Y', 'T': 'F'})  #23456789TJQKA wordt 23456789FJQYZ, mooi op 'alfabetische' volgorde dus
-    mapping_table_joker =str.maketrans({'A': 'Z', 'K': 'Y', 'T': 'F', 'J': '1'}) #23456789TJQKA wordt 23456789F1QYZ mooi op 'alfabetische' volgorde met de joker regel
+    mapping_table_joker =str.maketrans({'J': '1'}) #23456789TJQKA wordt icm bovenstaande 23456789F1QYZ mooi op 'alfabetische' volgorde met de joker regel
+    
     
     #determine hand strength without jokers
     for hand in hands:
@@ -39,7 +40,7 @@ def get_rank_lists(hands):
         
         #handen op alfabetische volgorde met een mapping
         hand1=hand[0].translate(mapping_table_nojoker)
-        hand2=hand[0].translate(mapping_table_joker)
+        hand2=hand1.translate(mapping_table_joker)
         
         #combineer de rank met de getransleerde hand, maak lijsten samen met bijbehorende bid
         result_list1.append([rank1+hand1,hand[1]])
