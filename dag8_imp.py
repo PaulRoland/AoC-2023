@@ -13,16 +13,16 @@ import math
 f = open("input_dag8.txt", "r")
 hands=list()
 sequence=f.readline().replace('(','').replace(')','').replace('=','').replace('\n','').replace(',','')
-
+seq_len=len(sequence)
 node_dict ={}
 
 starter_list=list()
 for i,line in enumerate(f):
     nodes = line.replace('(','').replace(')','').replace('=','').replace('\n','').replace(',','').split(" ")
     if len(nodes)>1: 
-        #add both using tuple notation
+        #Beide entries toevoegen aan dictionary met tuple notation: 8 microseconde sneller in totaal dan twee keer los wat toevoegen
         node_dict.update([('L'+nodes[0],nodes[2]),('R'+nodes[0],nodes[3])])
-        
+    
         #add left
         #node_dict.update({'L'+nodes[0]:nodes[2]})
         #key wordt bijv LAAA, waarde BBB
@@ -37,7 +37,7 @@ f.close()
 current_loc='AAA'
 step_number=0
 while current_loc !='ZZZ':
-    current_instruction=sequence[step_number%len(sequence)]
+    current_instruction=sequence[step_number%seq_len] #get L or R
     current_loc=node_dict[current_instruction+current_loc]
     step_number=step_number+1
 print("Part 1:",step_number)
@@ -50,7 +50,7 @@ for i,start_loc in enumerate(current_locations):
     loc_loop='yippie'
     inloop = False
     while inloop == False:
-        current_instruction=sequence[step_number%len(sequence)]
+        current_instruction=sequence[step_number%seq_len]
         cur_loc=node_dict[current_instruction+cur_loc]
         step_number=step_number+1
         
