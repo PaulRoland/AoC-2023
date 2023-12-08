@@ -32,15 +32,9 @@ for i,line in enumerate(f):
         #Make a list of starting locations
         if nodes[0][2] == 'A':
             starter_list.append(nodes[0])
+            if nodes[0]=='AAA':
+                aaa_loc=len(starter_list)
 f.close()
-
-current_loc='AAA'
-step_number=0
-while current_loc !='ZZZ':
-    current_instruction=sequence[step_number%seq_len] #get L or R
-    current_loc=node_dict[current_instruction+current_loc]
-    step_number=step_number+1
-print("Part 1:",step_number)
 
 current_locations=starter_list
 loop_list=list()
@@ -57,6 +51,7 @@ for i,start_loc in enumerate(current_locations):
         if cur_loc[2]=='Z':
             inloop = True
     loop_list.append(step_number)
-
+    
+print("Part 1:",loop_list[aaa_loc-1])
 print("Part 2:", math.lcm(loop_list[0],loop_list[1],loop_list[2],loop_list[3],loop_list[4],loop_list[5]))
 print("--- %s ms ---" % ((time.time_ns() - start_time)/1000000))
