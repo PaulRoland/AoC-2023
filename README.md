@@ -21,4 +21,4 @@ Hier gaat het natuurlijk om, alle runtimes. Ik heb een paar keer op f5 gedrukt e
 |Dag 5|501120|1.665 |
 |Dag 6|4013|0.1678|
 |Dag 7|6.001|2.9911|
-|Dag 8|73.5141||
+|Dag 8|73.5141|33.5058|
