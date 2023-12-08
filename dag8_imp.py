@@ -11,7 +11,6 @@ start_time = time.time_ns()
 import math
 
 f = open("input_dag8.txt", "r")
-hands=list()
 sequence=f.readline().replace('(','').replace(')','').replace('=','').replace('\n','').replace(',','')
 seq_len=len(sequence)
 node_dict ={}
