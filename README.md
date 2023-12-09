@@ -16,7 +16,7 @@ Hier gaat het natuurlijk om, alle runtimes. Ik heb een paar keer op f5 gedrukt e
 |-----|---:|---:|
 |Dag 1|10.5013|3.0005|
 |Dag 2| 7.5007| 5.0007|
-|Dag 3| 59.0002| 21.0032|
+|Dag 3| 59.0002| 4.5007|
 |Dag 4|2.501|2.0009 |
 |Dag 5|501120|1.665 |
 |Dag 6|4013|0.1678|
