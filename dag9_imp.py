@@ -19,9 +19,8 @@ def get_difference(int_list):
     diff_list=int_list[1:]-int_list[:-1]
     if set(diff_list)=={0}:
         return [0,0]
-    else:
-        return_list = get_difference(diff_list) 
-        return [diff_list[0]-return_list[0],diff_list[-1]+return_list[-1]]             
+    return_list = get_difference(diff_list) 
+    return [diff_list[0]-return_list[0],diff_list[-1]+return_list[-1]]             
 
 f = open("input_dag9.txt", "r")
 totalsum1=0
