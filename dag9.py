@@ -22,7 +22,7 @@ def get_difference(int_list):
     else:     
         return diff_list[-1]+get_difference(diff_list)               
 
-f = open("input_dag9a.txt", "r")
+f = open("input_dag9.txt", "r")
 totalsum1=0
 totalsum2=0
 for i,line in enumerate(f):
