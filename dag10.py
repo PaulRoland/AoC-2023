@@ -14,6 +14,8 @@ def get_number_list(lst):
 
 def get_S_info(S_area,cur_loc):
     prev_loc=[0,0]
+    j_start=cur_loc[1]
+    i_start=cur_loc[0]
     x=cur_loc[0]
     y=cur_loc[1]
     S_up=False
@@ -30,7 +32,7 @@ def get_S_info(S_area,cur_loc):
     if opp[y][x+1]=='-' or opp[y][x+1]=='J' or opp[y][x+1]=='7':
         S_right=True  
         
-    if opp[y][x-1]=='-' or opp[y][x-1]=='J' or opp[y][x-1]=='7':
+    if opp[y][x-1]=='-' or opp[y][x-1]=='L' or opp[y][x-1]=='F':
         S_left=True
 
     if S_left==True:
