@@ -14,8 +14,8 @@ def get_number_list(lst):
 
 def get_S_info(S_area,cur_loc):
     prev_loc=[0,0]
-    j_start=cur_loc[1]
-    i_start=cur_loc[0]
+    j_start=cur_loc[0]
+    i_start=cur_loc[1]
     x=cur_loc[0]
     y=cur_loc[1]
     S_up=False
@@ -56,10 +56,11 @@ def get_S_info(S_area,cur_loc):
         #S_left=False, S=right=False, enige optie is |
         token = '|'
         prev_loc[0]=j_start
-        prev_loc[1]=i_start -1   
+        prev_loc[1]=i_start -1
+        
     return (token,prev_loc)
 
-def next_step(cur_pipe,cur_loc,prev_loc): #letter,[x,y],[x,y]
+def next_step(cur_pipe,cur_loc,prev_loc):
     if cur_pipe=='|':
         if prev_loc[1] < cur_loc[1]: #Verticale pijp omlaag
             return ([cur_loc[0],cur_loc[1]+1],cur_loc) #return new location and the new previous location
@@ -96,72 +97,76 @@ def check_vertical(step_list,length):
     special_char ='' #er is een bepaalde edge case waar ik rekening mee wil houden
     
     for step in sorted(step_list):
-        row[step[0]]=0 #De huidige plek is iig een leeg vak in de loop    
+        row[step[0]]=0 #De huidige plek is iig een leeg vak in de loop
+        
         if step[1] =='J':
-            if special_char=='F': #we zien een j en hadden een f we zitten nog in de loop. Geen wijziging van status rechts
-                continue
-            row[step[0]+1:-1]=row[step[0]+1:-1]+1
-            continue
-            
+            if special_char=='L': #we zien een j en hadden een f we zitten nog in de loop. Geen wijziging van status rechts
+                #print('J uit loop') #we zien een J maar er was geen F dus we zitten niet meer in de lopo
+                row[step[0]+1:-1]=row[step[0]+1:-1]+1
         if step[1] =='7':
-            if special_char=='L': #we zien een 7 en hadden een L hiervoor we zitten nog in de loop. Geen wijziging van status rechts
-                continue
-            row[step[0]+1:-1]=row[step[0]+1:-1]+1
-            continue
-
+            if special_char=='F':
+                #print('7 uit loop') #we zien een J maar er was geen L dus we zitten niet meer in de lopo
+                row[step[0]+1:-1]=row[step[0]+1:-1]+1      
+      
         if step[1]=='L': #alles rechts hiervan verandert altijd van status
             row[step[0]+1:-1]=row[step[0]+1:-1]+1
             special_char='L' #voor de edge cases
-            continue
             
         if step [1]=='F': #alles rechts hiervan verandert altijd van status
             row[step[0]+1:-1]=row[step[0]+1:-1]+1
             special_char='F' #voor de edge cases
-            continue
             
         if step[1] == '|': #alles rechts hiervan verandert altijd van status
             row[step[0]+1:-1]=row[step[0]+1:-1]+1
 
-    row=row%2 #maak van alle even getallen 0 en alle oneven 1, voor 1 keer in de loop!
+    row=row%2 #maak van alles 2x in de loop 0x in de loop
+    
     return np.sum(row)
-
-opp= list()    
+        
+        
+#loop door elke regel heen
+#kijk hoeveel verticale er links zitten 
+    
 f = open("input_dag10.txt", "r")
+opp= list()
 for i,line in enumerate(f):
     line=line.replace('(','').replace(')','').replace('=','').replace('\n','').replace(',','')
     opp.append(line)
 f.close()
-#doe iets met het gebied rond s om de next step te bepalen
-#Kijk of up,down,left, right verbonden kan worden
 
-#zoek de startlocatie in de oppervlakte
+#Bepaal startlocatie
 for i,line in enumerate(opp):
     if 'S' in line:
         i_start=i
         j_start=line.index('S')
         break
 
+#Bepaal hoe S vervangen kan worden en wat een bijbehorende prev_location is
 cur_loc=[j_start,i_start]
 (token,prev_loc)=get_S_info(opp,cur_loc)
-opp[i_start]=opp[i_start].replace('S',token) #Vervang de S door het echte stuk buis
+
+opp[i_start]=opp[i_start].replace('S',token)
 
 steps=0
 step_list=list()
-for i in range(len(opp)): #Maak een lijst met lijsten waar alle stappen inkomen
+for i in range(len(opp)):
     step_list.append(list())
 
 while not(cur_loc[0]==j_start and cur_loc[1]==i_start and steps>0):
-    letter=opp[cur_loc[1]][cur_loc[0]] 
-    (cur_loc,prev_loc)=next_step(letter,cur_loc,prev_loc)
-
-    step_list[cur_loc[1]].append([cur_loc[0],letter]) #y,x,letter
+    letter=opp[cur_loc[1]][cur_loc[0]]
+    (cur_loc,prev_loc)=next_step(letter,cur_loc,prev_loc) 
+    #print(steps,opp[cur_loc[1]][cur_loc[0]], cur_loc,prev_loc)
+    #Als het een vertikaal element is dan houden we hem bij.
+    letter=opp[cur_loc[1]][cur_loc[0]]
+    step_list[cur_loc[1]].append([cur_loc[0],letter]) 
     steps=steps+1
-
+    
 area = 0
 length= len(line)
 for line_info in step_list:  
     line_area= check_vertical(line_info,length)
     area=area+line_area
+
 
 print("Part 1:",int(steps/2))
 print("Part 2",int(area))
