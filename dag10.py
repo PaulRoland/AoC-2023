@@ -14,8 +14,8 @@ def get_number_list(lst):
 
 def get_S_info(S_area,cur_loc):
     prev_loc=[0,0]
-    j_start=cur_loc[1]
-    i_start=cur_loc[0]
+    j_start=cur_loc[0]
+    i_start=cur_loc[1]
     x=cur_loc[0]
     y=cur_loc[1]
     S_up=False
