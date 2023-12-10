@@ -148,7 +148,7 @@ for i,line in enumerate(f):
         if c=='S':
             i_start=i
             j_start=j
-
+f.close()
 #doe iets met het gebied rond s om de next step te bepalen
 #Kijk of up,down,left, right verbonden kan worden
 cur_loc=[j_start,i_start]
