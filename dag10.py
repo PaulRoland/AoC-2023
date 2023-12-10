@@ -12,6 +12,51 @@ def get_number_list(lst):
     new_lst = [int(x) for x in lst]
     return new_lst
 
+def get_S_info(S_area,cur_loc):
+    prev_loc=[0,0]
+    x=cur_loc[0]
+    y=cur_loc[1]
+    S_up=False
+    S_down=False
+    S_left=False
+    S_right=False
+
+    if opp[y-1][x]=='|' or opp[y-1][x]=='7' or opp[y-1][x]=='F':
+        S_up=True
+        
+    if opp[y+1][x]=='|' or opp[y+1][x]=='J' or opp[y+1][x]=='L':
+        S_down=True
+        
+    if opp[y][x+1]=='-' or opp[y][x+1]=='J' or opp[y][x+1]=='7':
+        S_right=True  
+        
+    if opp[y][x-1]=='-' or opp[y][x-1]=='J' or opp[y][x-1]=='7':
+        S_left=True
+
+    if S_left==True:
+        if S_down==True:
+            token='7'
+        if S_up==True:
+            token='J'
+        if S_right==True:
+            token='-'
+        prev_loc[0]=j_start-1
+        prev_loc[1]=i_start
+
+    elif S_right==True:
+        if S_down==True:
+            token='F'
+        if S_up==True:
+            token='L'
+        prev_loc[0]=j_start+1
+        prev_loc[1]=i_start
+    else:
+        #S_left=False, S=right=False, enige optie is |
+        token = '|'
+        prev_loc[0]=j_start
+        prev_loc[1]=i_start -1   
+    return (token,prev_loc)
+
 def next_step(cur_pipe,cur_loc,prev_loc):
     if cur_pipe=='|':
         if prev_loc[1] < cur_loc[1]: #Verticale pijp omlaag
@@ -49,13 +94,12 @@ def check_vertical(step_list):
     #we krijgen een lijst met wat er gebeurt op die regel
     row = np.zeros(140)
     special_char ='' #er is een bepaalde edge case waar ik rekening mee wil houden
+    
     for step in sorted(step_list):
         
-        
+        row[step[0]]=0 #De huidige plek is iig niet een leeg vak in de loop    
         if step[1] =='J':
             if special_char=='F': #we zien een j en hadden een f we zitten nog in de loop. Geen wijziging van status rechts
-                #print('J in loop edge case')
-                row[step[0]]=0
                 continue
             elif special_char=='L':
                 #print('J uit loop') #we zien een J maar er was geen F dus we zitten niet meer in de lopo
@@ -64,7 +108,6 @@ def check_vertical(step_list):
                 print('Jhjeeeelp')
         if step[1] =='7':
             if special_char=='L': #we zien een 7 en hadden een L hiervoor we zitten nog in de loop. Geen wijziging van status rechts
-                row[step[0]]=0
                 continue
             elif special_char=='F':
                 #print('7 uit loop') #we zien een J maar er was geen L dus we zitten niet meer in de lopo
@@ -84,7 +127,7 @@ def check_vertical(step_list):
         if step[1] == '|': #alles rechts hiervan verandert altijd van status
             row[step[0]+1:-1]=row[step[0]+1:-1]+1
 
-        row[step[0]]=0 #De huidige plek is iig niet een leeg vak in de loop
+        
         #print(step)
         #print(row)
         row=row%2 #maak van alles 2x in de loop 0x in de loop
@@ -107,15 +150,13 @@ for i,line in enumerate(f):
             j_start=j
 
 
-#doe iets met het gebied rond s om de next step te bepalen, nu handmatig gedaan
-cur_loc=[0,0] #[x,y]
-prev_loc=[0,0]
-cur_loc[0]=j_start
-cur_loc[1]=i_start
 
-prev_loc[0]=cur_loc[0]-1 #Buis komt van links
-prev_loc[1]=cur_loc[1]
-token='7'
+
+
+#doe iets met het gebied rond s om de next step te bepalen
+#Kijk of up,down,left, right verbonden kan worden
+cur_loc=[j_start,i_start]
+(token,prev_loc)=get_S_info(opp,cur_loc)
 
 steps=0
 step_list=list()
@@ -139,7 +180,7 @@ while not(cur_loc[0]==j_start and cur_loc[1]==i_start and steps>0):
         step_list[cur_loc[1]].append([cur_loc[0],token]) 
 
 area = 0
-for i,line_info in enumerate(step_list):  
+for line_info in step_list:  
     line_area= check_vertical(line_info)
     #print(opp[i], line_area)
     area=area+line_area
