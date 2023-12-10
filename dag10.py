@@ -90,11 +90,9 @@ def next_step(cur_pipe,cur_loc,prev_loc):
             return ([cur_loc[0],cur_loc[1]+1],cur_loc)
         return ([cur_loc[0]+1,cur_loc[1]],cur_loc)
 
-
-
-def check_vertical(step_list):
+def check_vertical(step_list,length):
     #we krijgen een lijst met wat er gebeurt op die regel
-    row = np.zeros(140)
+    row = np.zeros(length)
     special_char ='' #er is een bepaalde edge case waar ik rekening mee wil houden
     
     for step in sorted(step_list):
@@ -132,7 +130,7 @@ def check_vertical(step_list):
         
         #print(step)
         #print(row)
-        row=row%2 #maak van alles 2x in de loop 0x in de loop
+    row=row%2 #maak van alles 2x in de loop 0x in de loop
     #print(row)
     return np.sum(row)
         
@@ -158,7 +156,7 @@ cur_loc=[j_start,i_start]
 
 steps=0
 step_list=list()
-for i in range(140):
+for i in range(len(opp)):
     step_list.append(list())
 
 while not(cur_loc[0]==j_start and cur_loc[1]==i_start and steps>0):
@@ -178,8 +176,9 @@ while not(cur_loc[0]==j_start and cur_loc[1]==i_start and steps>0):
         step_list[cur_loc[1]].append([cur_loc[0],token]) 
 
 area = 0
+length= len(opp)
 for line_info in step_list:  
-    line_area= check_vertical(line_info)
+    line_area= check_vertical(line_info,length)
     #print(opp[i], line_area)
     area=area+line_area
 
