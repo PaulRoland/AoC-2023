@@ -121,7 +121,7 @@ def check_vertical(step_list,length):
 
     row=row%2 #maak van alles 2x in de loop 0x in de loop
     
-    return np.sum(row)
+    return (np.sum(row),row)
         
         
 #loop door elke regel heen
@@ -164,10 +164,25 @@ while not(cur_loc[0]==j_start and cur_loc[1]==i_start and steps>0):
 area = 0
 length= len(line)
 for line_info in step_list:  
-    line_area= check_vertical(line_info,length)
+    (line_area,row)= check_vertical(line_info,length)
     area=area+line_area
 
 
 print("Part 1:",int(steps/2))
 print("Part 2",int(area))
+
 print("--- %s ms ---" % ((time.time_ns() - start_time)/1000000))
+
+
+for i,line_info in enumerate(step_list):
+    (line_area,row)= check_vertical(line_info,length)
+    string=''
+    for c in row:
+        string=string+str(int(c))
+    string=string.replace('0','O').replace('1','I')
+    for tube in line_info:
+        string=string[:tube[0]]+tube[1]+string[tube[0]+1:]
+    print(string)
+print()
+    
+
