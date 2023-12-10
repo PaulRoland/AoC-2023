@@ -151,10 +151,6 @@ for i,line in enumerate(f):
             i_start=i
             j_start=j
 
-
-
-
-
 #doe iets met het gebied rond s om de next step te bepalen
 #Kijk of up,down,left, right verbonden kan worden
 cur_loc=[j_start,i_start]
