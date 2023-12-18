@@ -37,9 +37,7 @@ def vertices(instr):
     
     #directions key: xy
     directions={'0':[1,0],'1':[0,-1],'2':[-1,0],'3':[0,1]}
-                             
 
-    
     #Left handed and right handed list
     vert_L = list()
     vert_R = list() 
@@ -91,3 +89,15 @@ area2R = poly_area(loop_R2)
 print("Part 1",int(max(area1L,area1R)))
 print("Part 2",int(max(area2L,area2R)))
 print("--- %s ms ---" % ((time.time_ns() - start_time)/1000000))
+
+line1=np.array(loop_L1)
+line2=np.array(loop_L2)
+fig,(ax1,ax2)=plt.subplots(1,2,figsize=(13,5.5))
+fig.suptitle('Lavaduct Lagoon')
+ax1.plot(line1[:,0],line1[:,1])
+ax1.set_title('Lagoon 1: %d m$^3$ '%area1L)
+ax1.set_box_aspect(1)
+ax2.plot(line2[:,0],line2[:,1])
+ax2.set_title('Lagoon 2: %d m$^3$'%area2L)
+ax2.set_box_aspect(1)
+plt.show()
