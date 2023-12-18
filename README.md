@@ -30,5 +30,5 @@ Hier gaat het natuurlijk om, alle runtimes. Ik heb een paar keer op f5 gedrukt e
 |Dag 14|338.5586||
 |Dag 15|5.9997||
 |Dag 16|6957.7|521.0907|
-|Dag 17|bezig|bezig|
+|Dag 17|114022.276||
 |Dag 18|1.9907||
