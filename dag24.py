@@ -39,29 +39,6 @@ def intersect_xy_pos(hailA,hailB):
         time_b = (x_int-hailB.x)/hailB.vx
         return True,time_a,time_b,x_int,y_int
     return False,0,0,0,0
-    
-    
-
-def intersect_zxy(hailA,hailB):
-    xpar,ypar=True
-    intersect=0
-    if hailA.vx != hailB.vx:
-        timex = (hailA.x-hailB.x)/(hailA.vx-hailB.vx)
-        xpar=False
-    if hailA.vy != hailA.vy:
-        timey = (hailA.y-hailB.y)/(hailA.vy-hailB.vy) 
-        ypar=False
-
-    if xpar==False and ypar==False:
-        if timex==timey:
-            intersect=1
-            time = timex
-    
-    px = hailA.x+hailA.vx*time
-    py = hailA.y+hailA.vy*time
-    if timex==timey:
-        return 0,timex, #Intersect, tijd van intersect,locatie van intersect
-    
 
 f = open("input_dag24.txt", "r")
 hailstones=list()
@@ -81,19 +58,20 @@ for stones in it.combinations(hailstones,2):
             #print(stones[0].n,stones[1].n,x,y,time_a,time_b)
 print("Part 1",n_intersects)
 
-import sympy as sp
+#Gooi een steen die elke hagelsteen raakt
 #6 onbekenden x,y,z,u,v,w
 #Tijden ook onbekend
 #Elke steen geeft dus 3 vergelijkingen en een onbekende tijd
-#3 stenen heeft dus 9 vergelijkingen en 9 onbekende 
+#3 stenen heeft dus 9 vergelijkingen en 9 onbekenden, dit is op te lossen
+import sympy as sp
 x,y,z,u,v,w,t1,t2,t3 = sp.symbols('x,y,z,u,v,w,t1,t2,t3')
-times = [t1,t2,t3]
+times_list = [t1,t2,t3]
 eqs=list()
 for i,stone in enumerate(hailstones[:3]):
-    time = times[i]
-    eqs.append(sp.Eq(x+u*time-(stone.x+stone.vx*time),0))
-    eqs.append(sp.Eq(y+v*time-(stone.y+stone.vy*time),0))
-    eqs.append(sp.Eq(z+w*time-(stone.z+stone.vz*time),0))
+    times = times_list[i]
+    eqs.append(sp.Eq(x+u*times-(stone.x+stone.vx*times),0))
+    eqs.append(sp.Eq(y+v*times-(stone.y+stone.vy*times),0))
+    eqs.append(sp.Eq(z+w*times-(stone.z+stone.vz*times),0))
 
 sol = sp.solve(eqs,[x,y,z,u,v,w,t1,t2,t3])
 soln = [tuple(v.evalf() for v in s) for s in sol]        
