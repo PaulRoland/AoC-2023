@@ -61,8 +61,8 @@ print("Part 1",n_intersects)
 #Gooi een steen die elke hagelsteen raakt
 #6 onbekenden x,y,z,u,v,w
 #Tijden ook onbekend
-#Elke steen geeft dus 3 vergelijkingen en een onbekende tijd
-#3 stenen heeft dus 9 vergelijkingen en 9 onbekenden, dit is op te lossen
+#Elke hagelsteen geeft dus 3 vergelijkingen en een onbekende tijd
+#3 hagelstenen heeft dus 9 vergelijkingen en 9 onbekenden, dit is op te lossen
 import sympy as sp
 x,y,z,u,v,w,t1,t2,t3 = sp.symbols('x,y,z,u,v,w,t1,t2,t3')
 times_list = [t1,t2,t3]
